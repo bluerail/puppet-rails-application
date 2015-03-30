@@ -36,7 +36,7 @@ define rails_application(
       manage_home    => false,
       vhost_root     => '/',
       vhost_name     => '*',
-      server_aliases => '*',
+      vhost_aliasses => '*',
       rails_env      => 'development',
       rails_root     => '/',
       rails_public   => 'public',
