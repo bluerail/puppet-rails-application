@@ -51,7 +51,7 @@ class rails_application::vhost::install {
   }
 }
 
-define rails_application::vhost($name, $vhost_root, $vhost_name, $vhost_aliasses, $rails_env, $rails_root, $rails_public, $rails_shared, $ruby_version, $manage_home, $username = undef) {
+define rails_application::vhost($name, $vhost_root, $vhost_name, $vhost_aliasses = [], $rails_env, $rails_root, $rails_public, $rails_shared, $ruby_version, $manage_home, $username = undef) {
   require 'rails_application::vhost::install'
 
   if $manage_home {
