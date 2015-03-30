@@ -96,7 +96,7 @@ define rails_application::vhost($name, $vhost_root, $vhost_name, $vhost_aliasses
     }
   }
 
-  apache::vhost { $name:
+  apache::vhost { $vhost_name:
     require => [
       Class['apache'],
       User[pick($username, $name)],

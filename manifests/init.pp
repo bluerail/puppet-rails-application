@@ -31,17 +31,18 @@ define rails_application(
     }
 
     rails_application::vhost { "${$name}_rails_application_vhost":
-      name         => $name,
-      username     => 'vagrant',
-      manage_home  => false,
-      vhost_root   => '/',
-      vhost_name   => '*',
-      rails_env    => 'development',
-      rails_root   => '/',
-      rails_public => 'public',
-      rails_shared => '',
-      docroot      => '/vagrant/public',
-      ruby_version => $ruby_version
+      name           => $name,
+      username       => 'vagrant',
+      manage_home    => false,
+      vhost_root     => '/',
+      vhost_name     => '*',
+      server_aliases => '*',
+      rails_env      => 'development',
+      rails_root     => '/',
+      rails_public   => 'public',
+      rails_shared   => '',
+      docroot        => '/vagrant/public',
+      ruby_version   => $ruby_version
     }
 
     rails_application::database { "${$name}_rails_application_database":
