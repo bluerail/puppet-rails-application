@@ -1,0 +1,21 @@
+[Unit]
+Description=<%= @name %>
+Requires=<%= @database_service %>
+After=<%= @database_service %>
+
+[Service]
+Type=forking
+User=<%= @name %>
+WorkingDirectory=/var/www/vhosts/<%= @vhost_name %>/rails/current/
+Environment=RAILS_ENV=<%= @rails_env %>
+SyslogIdentifier=<%= @name %>
+PIDFile=/var/www/vhosts/<%= @vhost_name %>/rails/shared/tmp/pids/sidekiq.pid
+Restart=on-failure
+RestartSec=30
+
+ExecStart=/usr/local/rvm/gems/ruby-<%= @ruby_version %>/wrappers/bundle exec "sidekiq -d -P tmp/pids/sidekiq.pid -d -L log/sidekiq.log >> log/sidekiq.log 2>&1"
+ExecStop=/usr/local/rvm/gems/ruby-<%= @ruby_version %>/wrappers/bundle exec "sidekiqctl stop /var/www/vhosts/<%= @vhost_name %>/rails/shared/tmp/pids/sidekiq.pid >> /var/www/vhosts/<%= @vhost_name %>/rails/shared/log/sidekiq.log 2>&1"
+
+[Install]
+WantedBy=multi-user.target
+

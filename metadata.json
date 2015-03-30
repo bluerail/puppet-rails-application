@@ -1,0 +1,28 @@
+{
+  "name": "bluerail/rails_application",
+  "version": "0.0.1",
+  "author": "Bluerail",
+  "summary": "Puppet module for hosting Rails applications",
+  "license": "MIT",
+  "source": "https://github.com/bluerail/puppet-rails-application",
+  "project_page": "https://github.com/bluerail/puppet-rails-application",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "dependencies": [
+    { "name": "jfryman/selinux", "version_requirement": "0.2.3" },
+    { "name": "maestrodev/rvm", "version_requirement": "1.10.2" },
+    { "name": "puppetlabs/apache", "version_requirement": "1.3.0" },
+    { "name": "puppetlabs/firewall", "version_requirement": "1.4.0" },
+    { "name": "puppetlabs/mysql", "version_requirement": "3.3.0" },
+    { "name": "puppetlabs/passenger", "version_requirement": "0.4.1" },
+    { "name": "puppetlabs/postgresql", "version_requirement": "4.2.0" },
+    { "name": "saz/sudo", "version_requirement": "3.0.9" },
+    { "name": "yo61/logrotate", "version_requirement": "1.2.0" }
+  ]
+}
