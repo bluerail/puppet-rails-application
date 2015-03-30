@@ -38,7 +38,7 @@ define rails_application(
       vhost_name     => '*',
       rails_env      => 'development',
       rails_root     => '/',
-      rails_public   => '/public',
+      rails_public   => 'public',
       rails_shared   => '',
       ruby_version   => $ruby_version
     }
