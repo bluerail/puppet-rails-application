@@ -128,11 +128,12 @@ define development_rails_application(
     ruby_version   => $ruby_version
   }
 
+  $real_database_user = pick($database_user, $name)
   $real_database_name = pick($database_name, $name)
 
   rails_application::database { "${$name}_development_rails_application_database":
     database_engine     => $database_engine,
-    database_user       => pick($database_user, $name),
+    database_user       => "${$real_database_user}_development",
     database_name       => "${$real_database_name}_development",
     database_password   => $database_password,
 
@@ -143,7 +144,7 @@ define development_rails_application(
 
   rails_application::database { "${$name}_test_rails_application_database":
     database_engine     => $database_engine,
-    database_user       => pick($database_user, $name),
+    database_user       => "$($real_database_user}_test", 
     database_name       => "${$real_database_name}_test",
     database_password   => $database_password,
 
