@@ -166,6 +166,7 @@ define development_rails_application(
     username            => $name,
 
     ensure              => $create_database_yml,
-    template            => 'rails_application/development_database.yml.erb'
+    template            => 'rails_application/development_database.yml.erb',
+    manage_home         => false
   }
 }

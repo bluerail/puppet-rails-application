@@ -56,7 +56,7 @@ define rails_application::database_yml(
   $username = undef,
 
   $template = 'rails_application/database.yml.erb',
-
+  $manage_home = true,
   $ensure
  ) {
   if $ensure {
@@ -66,13 +66,23 @@ define rails_application::database_yml(
       $database_adapter = $database_engine
     }
 
-    file { "${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config/database.yml":
-      require => File["${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config"],
-      ensure => present,
-      mode => 640,
-      owner => $username,
-      group => $userngame,
-      content => template($template)
+    if $manage_home {
+      file { "${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config/database.yml":
+        ensure => present,
+        mode => 640,
+        owner => $username,
+        group => $userngame,
+        content => template($template)
+      }
+    } else {
+      file { "${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config/database.yml":
+        require => File["${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config"],
+        ensure => present,
+        mode => 640,
+        owner => $username,
+        group => $userngame,
+        content => template($template)
+      }
     }
   }
 }
