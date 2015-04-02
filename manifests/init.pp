@@ -144,8 +144,8 @@ define development_rails_application(
 
   rails_application::database { "${$name}_test_rails_application_database":
     database_engine     => $database_engine,
-    database_user       => "$($real_database_user}_tst", 
-    database_name       => "${$real_database_name}_tst",
+    database_user       => "$($real_database_user}_test", 
+    database_name       => "${$real_database_name}_test",
     database_password   => $database_password,
 
     vhost_name          => $vhost_name,
