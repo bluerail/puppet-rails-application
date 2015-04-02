@@ -68,6 +68,7 @@ define rails_application::database_yml(
 
     if $manage_home {
       file { "${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config/database.yml":
+        require => File["${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config"],
         ensure => present,
         mode => 640,
         owner => $username,
@@ -76,7 +77,6 @@ define rails_application::database_yml(
       }
     } else {
       file { "${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config/database.yml":
-        require => File["${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config"],
         ensure => present,
         mode => 640,
         owner => $username,
