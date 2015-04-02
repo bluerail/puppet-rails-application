@@ -1,4 +1,13 @@
-define rails_application::database($database_engine, $database_user, $database_name, $database_password, $vhost_root = undef, $vhost_name = undef, $rails_root = undef, $rails_shared = undef, $username = undef, $ruby_version = undef, $create_database_yml) {
+define rails_application::database(
+  $database_engine,
+  $database_user,
+  $database_name,
+  $database_password,
+
+  $vhost_name = undef,
+  $username = undef,
+  $ruby_version = undef
+) {
   if $database_engine == 'postgresql' {
     postgresql::server::role { $database_user:
       require => Class['postgresql::server'],
@@ -32,8 +41,25 @@ define rails_application::database($database_engine, $database_user, $database_n
       charset  => 'utf8'
     }
   }
+}
 
-  if $create_database_yml {
+define rails_application::database_yml(
+  $database_engine,
+  $database_user,
+  $database_name,
+  $database_password,
+
+  $vhost_root = undef,
+  $vhost_name = undef,
+  $rails_root = undef,
+  $rails_shared = undef,
+  $username = undef,
+
+  $template = 'rails_application/database.yml.erb',
+
+  $ensure
+ ) {
+  if $ensure {
     if $database_engine == 'mysql' {
       $database_adapter = 'mysql2'
     } else {
@@ -46,7 +72,7 @@ define rails_application::database($database_engine, $database_user, $database_n
       mode => 640,
       owner => $username,
       group => $userngame,
-      content => template('rails_application/database.yml.erb')
+      content => template($template)
     }
   }
 }

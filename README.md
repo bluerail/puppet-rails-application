@@ -41,19 +41,13 @@ rails_application { 'my_production_app':
 }
 ```
 
-## Presets
+## Development
 
-Presets are available for usage in a develompent environment, example usage:
+A development_rails_application is available for usage with the in-house default Vagrant setup, example usage:
 
 ```puppet
-rails_application { 'vagrant_dev':
-  preset            => 'development',
+development_rails_application { 'vagrant_dev':
   database_password => 'some random password'
-}
-
-rails_application { 'vagrant_test':
-  preset              => 'test',
-  database_password   => 'some random password'
 }
 ```
 
