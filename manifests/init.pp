@@ -138,7 +138,7 @@ define development_rails_application(
     database_password   => $database_password,
 
     vhost_name          => $vhost_name,
-    username            => $name,
+    username            => 'vagrant',
     ruby_version        => $ruby_version,
   }
 
@@ -149,7 +149,7 @@ define development_rails_application(
     database_password   => $database_password,
 
     vhost_name          => $vhost_name,
-    username            => $name,
+    username            => 'vagrant',
     ruby_version        => $ruby_version,
   }
 
@@ -163,7 +163,7 @@ define development_rails_application(
     vhost_name          => $vhost_name,
     rails_root          => $rails_root,
     rails_shared        => $rails_shared,
-    username            => $name,
+    username            => 'vagrant',
 
     ensure              => $create_database_yml,
     template            => 'rails_application/development_database.yml.erb',
