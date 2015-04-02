@@ -114,7 +114,7 @@ define development_rails_application(
   }
 
   rails_application::vhost { "${$name}_development_rails_application_vhost":
-    name           => $name,
+    name           => "${$name}_development",
     username       => 'vagrant',
     manage_home    => false,
     vhost_root     => $vhost_root,
@@ -152,7 +152,7 @@ define development_rails_application(
     ruby_version        => $ruby_version,
   }
 
-  rails_application::database_yml { "${$name}_rails_application_database_yml":
+  rails_application::database_yml { "${$name}_development_rails_application_database_yml":
     database_engine     => $database_engine,
     database_user       => pick($database_user, $name),
     database_name       => pick($database_name, $name),
