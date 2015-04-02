@@ -78,9 +78,6 @@ define rails_application::database_yml(
     } else {
       file { "${$vhost_root}${$vhost_name}${$rails_root}${$rails_shared}/config/database.yml":
         ensure => present,
-        mode => 640,
-        owner => $username,
-        group => $userngame,
         content => template($template)
       }
     }

@@ -163,7 +163,6 @@ define development_rails_application(
     vhost_name          => $vhost_name,
     rails_root          => $rails_root,
     rails_shared        => $rails_shared,
-    username            => 'vagrant',
 
     ensure              => $create_database_yml,
     template            => 'rails_application/development_database.yml.erb',
