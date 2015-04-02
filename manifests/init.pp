@@ -93,11 +93,11 @@ define development_rails_application(
   $database_password   = '',
 
   $vhost_root          = '/',
-  $vhost_name          = '*',
+  $vhost_name          = 'vagrant',
   $rails_env           = 'development',
   $rails_root          = '',
   $rails_public        = '/public',
-  $rails_shared        = '',
+  $rails_shared        = '/',
   $vhost_aliasses      = '*',
   $create_database_yml = true
 ) {
