@@ -1,17 +1,17 @@
 development:
   host: localhost
-  username: <%= @database_user %>
+  username: <%= @database_user %>_dev
   password: <%= @database_password %>
-  database: <%= @database_name %>
+  database: <%= @database_name %>_dev
   adapter: <%= @database_adapter %>
   pool: 5
   encoding: utf8
 
 test:
   host: localhost
-  username: <%= @database_user %>
+  username: <%= @database_user %>_test
   password: <%= @database_password %>
-  database: <%= @database_name %>
+  database: <%= @database_name %>_test
   adapter: <%= @database_adapter %>
   pool: 5
   encoding: utf8
