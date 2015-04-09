@@ -122,7 +122,7 @@ define development_rails_application(
     username       => 'vagrant',
     manage_home    => false,
     vhost_root     => $vhost_root,
-    vhost_name     => '*',
+    vhost_name     => $vhost_name,
     vhost_aliasses => $vhost_aliasses,
     rails_env      => $rails_env,
     rails_root     => $rails_root,
