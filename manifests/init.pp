@@ -1,6 +1,8 @@
 define rails_application(
   $vhost_root          = '/var/www/vhosts/',
   $vhost_name          = '',
+  $vhost_ip            = '',
+  $vhost_port          = 80,
   $rails_env           = 'production',
   $rails_root          = '/rails',
   $rails_public        = '/current/public',
@@ -41,6 +43,8 @@ define rails_application(
     manage_home    => $manage_home,
     vhost_root     => $vhost_root,
     vhost_name     => $vhost_name,
+    vhost_ip       => $vhost_ip,
+    vhost_port     => $vhost_port,
     vhost_aliasses => $vhost_aliasses,
     rails_env      => $rails_env,
     rails_root     => $rails_root,

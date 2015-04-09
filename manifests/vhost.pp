@@ -51,7 +51,22 @@ class rails_application::vhost::install {
   }
 }
 
-define rails_application::vhost($name, $vhost_root, $vhost_name, $vhost_aliasses = [], $rails_env, $rails_root, $rails_public, $rails_shared, $ruby_version, $manage_home, $username = undef, $docroot = undef) {
+define rails_application::vhost(
+  $name,
+  $vhost_root,
+  $vhost_name,
+  $vhost_ip = "",
+  $vhost_port = 80,
+  $vhost_aliasses = [],
+  $rails_env,
+  $rails_root,
+  $rails_public,
+  $rails_shared,
+  $ruby_version,
+  $manage_home,
+  $username = undef,
+  $docroot = undef
+) {
   require 'rails_application::vhost::install'
 
   if $manage_home {
@@ -103,7 +118,8 @@ define rails_application::vhost($name, $vhost_root, $vhost_name, $vhost_aliasses
     ],
     vhost_name     => $vhost_name,
     serveraliases  => $vhost_aliasses,
-    port           => '80',
+    ip             => pick($vhost_ip, $vhost_name),
+    port           => $vhost_port,
     docroot        => pick($docroot, "${$vhost_root}${$vhost_name}${$rails_root}${$rails_public}"),
     manage_docroot => false,
 
