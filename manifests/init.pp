@@ -125,6 +125,8 @@ define development_rails_application(
     manage_home    => false,
     vhost_root     => $vhost_root,
     vhost_name     => $vhost_name,
+    vhost_ip       => $vhost_ip,
+    vhost_port     => $vhost_port,
     vhost_aliasses => $vhost_aliasses,
     rails_env      => $rails_env,
     rails_root     => $rails_root,
