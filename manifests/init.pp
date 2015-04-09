@@ -98,6 +98,8 @@ define development_rails_application(
 
   $vhost_root          = '/',
   $vhost_name          = 'vagrant',
+  $vhost_ip            = '*',
+  $vhost_port          = 80,
   $rails_env           = 'development',
   $rails_root          = '',
   $rails_public        = '/public',
