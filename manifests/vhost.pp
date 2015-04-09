@@ -119,6 +119,7 @@ define rails_application::vhost(
     vhost_name     => $vhost_name,
     serveraliases  => $vhost_aliasses,
     ip             => pick($vhost_ip, $vhost_name),
+    add_listen     => false, # Setting add_listen to 'false' stops the vhost from creating a Listen statement, and this is important when you combine vhosts that are not passed an ip parameter with vhosts that are passed the ip parameter.
     port           => $vhost_port,
     docroot        => pick($docroot, "${$vhost_root}${$vhost_name}${$rails_root}${$rails_public}"),
     manage_docroot => false,
