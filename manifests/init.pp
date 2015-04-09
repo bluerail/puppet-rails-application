@@ -1,7 +1,7 @@
 define rails_application(
   $vhost_root          = '/var/www/vhosts/',
   $vhost_name          = '',
-  $vhost_ip            = '',
+  $vhost_ip            = '*',
   $vhost_port          = 80,
   $rails_env           = 'production',
   $rails_root          = '/rails',
