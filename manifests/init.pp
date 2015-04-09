@@ -10,9 +10,9 @@ define rails_application(
   $vhost_aliasses      = [],
   $ruby_version        = $rails_application::globals::ruby_version,
   $database_engine     = $rails_application::globals::database_engine,
-  $database_user       = '',
-  $database_name       = '',
-  $database_password   = '',
+  $database_user       = undef,
+  $database_name       = undef,
+  $database_password   = undef,
   $create_database_yml = true,
   $manage_home         = true,
   $manage_user         = true,
@@ -53,10 +53,13 @@ define rails_application(
     ruby_version   => $ruby_version
   }
 
+  $real_database_user = pick($database_user, $name)
+  $real_database_name = pick($database_name, $name)
+
   rails_application::database { "${$name}_rails_application_database":
     database_engine     => $database_engine,
-    database_user       => pick($database_user, $name),
-    database_name       => pick($database_name, $name),
+    database_user       => $real_database_user,
+    database_name       => $real_database_name,
     database_password   => $database_password,
 
     vhost_name          => $vhost_name,
@@ -66,8 +69,8 @@ define rails_application(
 
   rails_application::database_yml { "${$name}_rails_application_database_yml":
     database_engine     => $database_engine,
-    database_user       => pick($database_user, $name),
-    database_name       => pick($database_name, $name),
+    database_user       => $real_database_user,
+    database_name       => $real_database_name,
     database_password   => $database_password,
 
     vhost_root          => $vhost_root,
@@ -92,9 +95,9 @@ define rails_application(
 define development_rails_application(
   $ruby_version        = $rails_application::globals::ruby_version,
   $database_engine     = $rails_application::globals::database_engine,
-  $database_user       = '',
-  $database_name       = '',
-  $database_password   = '',
+  $database_user       = undef,
+  $database_name       = undef,
+  $database_password   = undef,
 
   $vhost_root          = '/',
   $vhost_name          = 'vagrant',
