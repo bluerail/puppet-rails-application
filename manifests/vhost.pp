@@ -27,6 +27,8 @@ class rails_application::vhost::install {
     manage_user         => false
   }
 
+  include apache::mod::mime
+
   # 5.0.1 nog niet supported.. geeft RailsAutoDetect ipv PassengerEnabled in template
   class { 'passenger':
     package_ensure         => '4.0.59',
@@ -129,6 +131,9 @@ define rails_application::vhost(
     custom_fragment => "
       PassengerRuby /usr/local/rvm/gems/ruby-${$ruby_version}/wrappers/ruby
       PassengerAppEnv ${$rails_env}
+
+      AddType text/css .css
+      AddType text/javascript .js
     "
   }
 }
